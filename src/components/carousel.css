@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Carousel container */
+.carousel {
+  @apply relative w-full overflow-hidden min-h-[900px] md:min-h-[1000px] flex justify-center items-center transition-all duration-500 ease-in-out;
+}
+
+/* List of items */
+.carousel .list {
+  @apply absolute w-[1140px] max-w-[90%] h-[80%] left-1/2 transform -translate-x-1/2;
+}
+
+/* Item base styles */
+.carousel .item {
+  @apply absolute left-0 w-[70%] h-full text-[15px] transition-all duration-500 ease-in-out opacity-0 pointer-events-none;
+}
+
+.carousel .item:nth-child(1) {
+  transform: translateX(-100%) translateY(-5%) scale(1.5);
+  filter: blur(30px);
+  z-index: 11;
+}
+
+.carousel .item:nth-child(2) {
+  transform: translateX(0);
+  filter: blur(0px);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.carousel .item:nth-child(3) {
+  transform: translate(50%,10%) scale(0.8);
+  filter: blur(10px);
+  opacity: 1;
+  z-index: 9;
+}
+
+.carousel .item:nth-child(4) {
+  transform: translate(90%,20%) scale(0.5);
+  filter: blur(30px);
+  opacity: 1;
+  z-index: 8;
+}
+
+.carousel .item:nth-child(5) {
+  transform: translate(120%,30%) scale(0.3);
+  filter: blur(40px);
+  opacity: 1;
+  z-index: 7;
+}
+
+/* Item image */
+.carousel .item img {
+  @apply w-1/2 absolute right-0 top-1/2 transform -translate-y-1/2 transition-all duration-[1500ms];
+}
+
+/* Introduce section */
+.carousel .introduce {
+  @apply absolute top-1/2 left-0 transform -translate-y-1/2 w-[400px] opacity-0 pointer-events-none transition-opacity duration-500;
+}
+.carousel .item:nth-child(2) .introduce {
+  @apply opacity-100 pointer-events-auto;
+}
+
+.introduce .title {
+  @apply text-2xl font-medium leading-none;
+}
+.introduce .topic {
+  @apply text-5xl font-medium;
+}
+.introduce .des {
+  @apply text-sm text-gray-500;
+}
+.introduce .seeMore {
+  @apply mt-5 px-0 py-1 border-0 border-b border-gray-600 bg-transparent font-bold tracking-widest transition hover:bg-gray-200;
+}
+
+/* Detail view */
+.detail {
+  @apply opacity-0 pointer-events-none absolute top-1/2 right-0 transform -translate-y-1/2 w-1/2 text-right;
+}
+
+.carousel.showDetail .item:nth-child(2) img {
+  @apply right-1/2;
+}
+
+.carousel.showDetail .item:nth-child(2) .introduce {
+  @apply opacity-0 pointer-events-none;
+}
+
+.carousel.showDetail .item:nth-child(2) .detail {
+  @apply opacity-100 pointer-events-auto;
+}
+
+.detail .title {
+  @apply text-5xl;
+}
+.detail .des {
+  @apply text-sm;
+}
+.detail .specifications {
+  @apply flex gap-3 mt-5 border-t border-gray-400 overflow-x-auto;
+}
+.specifications div {
+  @apply w-[90px] text-center flex-shrink-0;
+}
+.specifications p:first-child {
+  @apply font-bold;
+}
+
+.detail .checkout {
+  @apply mt-4 flex justify-end gap-2;
+}
+.checkout button {
+  @apply font-medium tracking-widest border border-gray-500 px-4 py-2;
+}
+.checkout button:nth-child(2) {
+  @apply bg-indigo-600 text-white;
+}
+
+/* Arrows */
+.arrows {
+  @apply absolute bottom-[10px] w-[90%] max-w-[1140px] flex justify-between left-1/2 transform -translate-x-1/2;
+}
+
+
+#prev, #next {
+  @apply w-10 h-10 rounded-full font-mono border border-gray-500 text-lg;
+}
+#back {
+  @apply absolute z-50 bottom-0 left-1/2 transform -translate-x-1/2 border-0 border-b border-gray-500 font-bold tracking-widest bg-transparent px-4 py-2 transition-opacity duration-500;
+}
+.carousel.showDetail #back {
+  @apply opacity-100;
+}
+.carousel.showDetail #prev,
+.carousel.showDetail #next {
+  @apply opacity-0 pointer-events-none;
+}
+
+@media (max-width: 767px) {
+  .carousel .item {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel .item img {
+    position: relative;
+    transform: none;
+    top: auto;
+    right: auto;
+    width: 70%;
+    margin-bottom: 1rem;
+  }
+
+  .carousel .introduce {
+    position: relative;
+    transform: none;
+    top: auto;
+    width: 90%;
+    text-align: center;
+  }
+}
+.carousel.showDetail .item:nth-child(2) img {
+  position: relative;
+  right: auto;
+  transform: none;
+  width: 60%;
+  margin: 4rem 0 0 0;
+  float: left;
+}
+
+
+/* Background blob */
+.carousel::before {
+  content: '';
+  @apply w-[500px] h-[300px] absolute z-[-1] rounded-[20%_30%_80%_10%] blur-[150px] bg-gradient-to-tr from-red-500 to-blue-500 top-1/2 left-1/2 transform -translate-x-[10%] -translate-y-1/2 transition-all duration-1000;
+}
+.carousel.showDetail::before {
+  @apply -translate-x-full rotate-90 blur-[130px];
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .carousel .item {
+    @apply w-[90%];
+  }
+  .detail .specifications {
+    @apply overflow-auto;
+  }
+  .detail .title {
+    @apply text-3xl;
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel {
+    @apply min-h-[600px];
+  }
+  .carousel .item {
+    @apply w-full text-[10px];
+  }
+  .introduce {
+    @apply w-1/2;
+  }
+  .carousel .item img {
+    @apply w-[40%];
+  }
+  .detail {
+    @apply backdrop-blur-sm text-sm;
+  }
+  .detail .des {
+    @apply h-[100px] overflow-auto;
+  }
+  .checkout {
+    @apply flex w-max float-right;
+  }
+}
+
+/* Animation classes - keyframes still handled via Tailwind config or inline */
+@keyframes showContent {
+  from {
+    transform: translateY(-30px);
+    filter: blur(10px);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
