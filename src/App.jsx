@@ -1,7 +1,7 @@
 // src/App.jsx
 import { Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
-
+import usePageTracking from "./hooks/usePageTracking";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -16,6 +16,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Packages from "./pages/Packages"; 
 
 const App = () => {
+  usePageTracking();
   return (
     <main className="relative min-h-screen w-screen overflow-x-hidden">
       <Helmet>
