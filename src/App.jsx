@@ -28,6 +28,20 @@ const App = () => {
         <meta property="og:image" content="https://snjprojects.com/img/social-preview.jpg" />
         <meta property="og:url" content="https://snjprojects.com" />
         <meta name="twitter:card" content="summary_large_image" />
+
+        {/* Google Analytics 4 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZNSN4BD8Y"></script>
+        <script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-WZNSN4BD8Y');
+          `}
+        </script>
+
+
       </Helmet>
 
       <Routes>
